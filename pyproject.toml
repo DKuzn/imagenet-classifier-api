@@ -12,7 +12,11 @@ fastapi = "^0.104.1"
 uvicorn = "^0.24.0.post1"
 onnx = "^1.15.0"
 opencv-python = "^4.8.1.78"
+onnxruntime = "^1.16.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
 
 [build-system]
 requires = ["poetry-core"]
