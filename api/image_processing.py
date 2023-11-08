@@ -20,9 +20,17 @@ class ImageProcessing:
         return np.frombuffer(byte_image, dtype=np.uint8)
     
     @classmethod
-    def resize(cls, image: np.ndarray, size: Tuple(int, int)) -> np.ndarray:
+    def resize(cls, image: np.ndarray, size: Tuple[int, int]) -> np.ndarray:
         image_shape = image.shape
-        if image_shape[0] > size[0] and image_shape[[1]] > size[1]:
+        if image_shape[0] > size[0] and image_shape[1] > size[1]:
             return cv.resize(image, size, interpolation=cv.INTER_CUBIC)
         
         return cv.resize(image, size, interpolation=cv.INTER_AREA)
+
+    @classmethod
+    def to_tensor(cls, image: np.ndarray) -> np.ndarray:
+        img = cls.resize(image, (224, 224))
+        img = np.moveaxis(img, 2, 0)
+        img = np.expand_dims(img, axis=0)
+        return np.float32(img / 255)
+    
