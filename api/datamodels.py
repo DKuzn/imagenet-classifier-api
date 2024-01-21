@@ -9,6 +9,8 @@ class ImageClass(BaseModel):
 
 class ClassificationRequest(BaseModel):
     image: str
+    location: dict
+    device: dict
 
 
 class ClassificationResponse(BaseModel):
