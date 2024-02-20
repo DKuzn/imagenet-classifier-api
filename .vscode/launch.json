@@ -12,9 +12,12 @@
             "args": [
                 "main:app",
                 "--port",
-                "8080",
+                "8000",
                 "--reload"
             ],
+            "env": {
+                "MONGODB_URL": "mongodb://localhost:27017"
+            },
             "jinja": true,
             "justMyCode": true
         }

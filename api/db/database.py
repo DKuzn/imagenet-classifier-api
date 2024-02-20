@@ -1,3 +1,5 @@
+import os
+
 from passlib.context import CryptContext
 from pymongo import MongoClient
 
@@ -6,8 +8,7 @@ from api.db.datamodels import Prediction, PredictionCollection, User, UserUpdate
 
 class DbWrapper:
     def __init__(self) -> None:
-        self.client = MongoClient(
-            "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false")
+        self.client = MongoClient(os.environ["MONGODB_URL"])
         self.db = self.client.get_database("imagenet_classifier")
         self.users_collection = self.db.get_collection("users")
         self.predictions_collection = self.db.get_collection("predictions")
